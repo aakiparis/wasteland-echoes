@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wasteland RPG</title>
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=VT323&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="pipboy-frame">
+        <div id="screen">
+            <header>
+                <div id="stats">
+                    <span>HP: <span id="player-hp">20</span>/20</span>
+                    <span>XP: <span id="player-xp">0</span></span>
+                    <span>REP: <span id="player-rep">0</span></span>
+                </div>
+                <div id="attributes">
+                    <span>STR: <span id="player-str">1</span></span>
+                    <span>INT: <span id="player-int">1</span></span>
+                    <span>LCK: <span id="player-lck">1</span></span>
+                </div>
+            </header>
+            <main id="game-view">
+                <!-- Game content will be injected here -->
+            </main>
+            <div id="log-panel-container">
+                <div id="log-panel">
+                    <p>> Game Initialized. Welcome to the Wasteland.</p>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div id="file-controls">
+                <button id="save-button">Save Game State</button>
+                <label for="load-file" class="file-label">Load Game State</label>
+                <input type="file" id="load-file" accept=".json" style="display: none;">
+                <!-- New Restart Button -->
+                <button id="restart-button">Restart Game</button>
+            </div>
+            <div class="footer-text">TERMINAL v1.1</div>
+        </footer>
+    </div>
+    <!-- Script files are now loaded in order -->
+    <script src="gameData.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

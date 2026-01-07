@@ -1,0 +1,215 @@
+/* --- Basic Setup & Font --- */
+body {
+    background-color: #111;
+    color: #3f3;
+    font-family: 'VT323', monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    font-size: 30px;
+}
+
+/* --- Pip-Boy Frame and Screen --- */
+#pipboy-frame {
+    width: 1200px;
+    height: 800px;
+    background: #1a1a1a;
+    border: 5px solid #333;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5), inset 0 0 15px #000;
+    display: flex;
+    flex-direction: column;
+}
+
+#screen {
+    background: #0a180a;
+    border: 2px solid #3f3;
+    border-radius: 5px;
+    padding: 15px;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    box-shadow: inset 0 0 20px rgba(68, 255, 68, 0.2);
+    position: relative;
+}
+
+/* Scanline effect 1 */
+#screen::after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+    z-index: 2;
+    background-size: 100% 4px, 6px 100%;
+    pointer-events: none;
+    animation: flicker 0.8s infinite;
+}
+@keyframes flicker {
+  0% { opacity: 0.2; }
+  20% { opacity: 1; }
+  100% { opacity: 0.2; }
+}
+
+/*
+#screen::after {
+    content: ' ';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(
+        to bottom,
+        rgba(18, 16, 16, 0) 0%,
+        rgba(68, 255, 68, 0.1) 48%,
+        rgba(68, 255, 68, 0.4) 50%, 
+        rgba(68, 255, 68, 0.1) 52%,
+        rgba(18, 16, 16, 0) 100%
+    );
+    z-index: 2;
+    pointer-events: none;
+    animation: running-scanline 5s linear infinite;
+}
+
+@keyframes running-scanline {
+    0% {
+        transform: translateY(-100%);
+    }
+    100% {
+        transform: translateY(100%);
+    }
+}*/
+
+
+
+
+/* --- Header: Stats & Attributes --- */
+header {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 2px solid #3f3;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    flex-shrink: 0;
+}
+
+#stats, #attributes {
+    display: flex;
+    gap: 20px;
+}
+
+/* --- Main Game View --- */
+#game-view {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+#game-view h2 {
+    text-align: center;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+}
+
+.menu-list, .dialogue-options {
+    list-style-type: none;
+    padding: 0;
+}
+
+/* Shared selection style for menus and attribute screen */
+.menu-list li, .dialogue-options li, #attribute-setup .attribute-line, #attribute-setup .confirm-button {
+    padding: 5px 10px;
+    border: 1px solid transparent;
+    cursor: none;
+    user-select: none;
+}
+
+/* NEW: Style for the selected item */
+.selected {
+    background-color: #3f3;
+    color: #111;
+}
+
+.dialogue-message {
+    border: 1px solid #3f3;
+    padding: 15px;
+    margin-bottom: 20px;
+    background-color: rgba(68, 255, 68, 0.05);
+}
+
+.disabled-option {
+    color: #496949;
+    text-decoration: line-through;
+}
+
+/* --- Attribute Setup Screen Styling --- */
+#attribute-setup div {
+    margin: 15px 0;
+}
+#attribute-setup .attribute-line {
+    display: flex;
+    justify-content: space-between;
+}
+#attribute-setup .attr-value {
+    font-weight: bold;
+}
+#attribute-setup .confirm-button {
+    margin-top: 20px;
+    text-align: center;
+}
+
+/* --- Log Panel --- */
+#log-panel-container {
+    border-top: 2px solid #3f3;
+    margin-top: 10px;
+    padding-top: 10px;
+    height: 120px;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column-reverse;
+}
+
+#log-panel {
+    overflow-y: auto;
+}
+
+#log-panel p {
+    margin: 0 0 5px 0;
+    text-indent: -1.5em;
+    padding-left: 1.5em;
+}
+
+/* --- Footer & File Controls --- */
+footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 10px;
+    flex-shrink: 0;
+}
+
+button, .file-label {
+    background: none;
+    border: 1px solid #3f3;
+    color: #3f3;
+    font-family: 'VT323', monospace;
+    font-size: 16px;
+    padding: 5px 10px;
+    cursor: none;
+}
+
+button:hover, .file-label:hover {
+    background-color: #3f3;
+    color: #111;
+}
+
+/* Hide scrollbar */
+::-webkit-scrollbar { width: 0 !important; }
